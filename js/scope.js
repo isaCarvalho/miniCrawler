@@ -1,4 +1,4 @@
-angular.module("miniCrawler", []);
+angular.module("miniCrawler", ["ngMessages"]);
 angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 {
 	$scope.app = "Meu Mini Crawler"
@@ -8,37 +8,30 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 	{
 		let regex = /http(s)?:\/\/[\w\.]+/g
 
-		if (url.match(new Validar(regex)))
-		{
-			let pagina = new URL(url)
-			console.log(pagina)
+		let pagina = new URL(url)
+		console.log(pagina)
 
-			fetch(pagina.origin)
-			 .then(response => response.text())
-			 .then(html => {
+		fetch(pagina.origin)
+		 .then(response => response.text())
+		 .then(html => {
 
-			  	let matches = html.matchAll(new ValidarTudo(regex))
+		  	let matches = html.matchAll(new ValidarTudo(regex))
 
-			  	let setMatches = new Set()
+		  	let setMatches = new Set()
 
-			  	matches.forEach(match => {
-					setMatches.add(match[0])
-			  	})
+		  	matches.forEach(match => {
+				setMatches.add(match[0])
+		  	})
 
-			  	setMatches.forEach(setMatch => {
-					$scope.urls.push({ nome: setMatch })
-			  	})
+		  	setMatches.forEach(setMatch => {
+				$scope.urls.push({ nome: setMatch })
+		  	})
 
-			 	$scope.$apply()
-			 });
+		 	$scope.$apply()
+		 });
 
-			delete $scope.url
-		}
-		else
-		{
-			console.log("url invalida")
-		}
-
+		$scope.urlForm.$setPristine();
+		delete $scope.url
 	}
 
 	$scope.hasUrls = function(urls)
