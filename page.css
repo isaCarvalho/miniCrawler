@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap');
+
+.jumbotron
+{
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+}
+
+h4 {
+	text-align: center;
+	font-family: 'Crimson Pro', serif;
+}
+
+.btn
+{
+	float: right;
+}
