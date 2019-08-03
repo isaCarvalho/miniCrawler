@@ -7,11 +7,11 @@
 <head>
 	<title>Meu Mini Crawler</title>
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="page.css">
+	<link rel="stylesheet" type="text/css" href="css/page.css">
 	<script src="lib/angular.js"></script>
-	<script src="Validar.js"></script>
-	<script src="ValidarTudo.js"></script>
-	<script src="scope.js"></script>
+	<script src="js/Validar.js"></script>
+	<script src="js/ValidarTudo.js"></script>
+	<script src="js/scope.js"></script>
 </head>
 
 <body ng-controller="miniCrawlerCtrl">
@@ -23,7 +23,7 @@
 
 			<hr/>
 
-			<button class="btn btn-primary btn-block" ng-click="showUrl(url)" ng-disabled="!url">Salvar</button>
+			<button class="btn btn-primary btn-block" ng-click="showUrl(url)" ng-disabled="!url">Buscar</button>
 		</form>
 	
 		<table class="table" ng-if="urls.length > 0">
