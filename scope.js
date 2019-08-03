@@ -19,10 +19,18 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 			  	// console.log(html)
 
 			  	let matches = html.matchAll(new ValidarTudo(regex))
-			  	console.log(matches)
+			  	// console.log(matches)
+
+			  	let setMatches = new Set()
 
 			  	matches.forEach(match => {
-					$scope.urls.push({ nome: match[0] })
+					setMatches.add(match[0])
+			  	})
+
+			  	// console.log(setMatches)
+
+			  	setMatches.forEach(setMatch => {
+					$scope.urls.push({ nome: setMatch })
 			  	})
 
 			 	$scope.$apply()
