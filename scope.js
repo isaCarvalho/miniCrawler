@@ -6,7 +6,7 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 
 	$scope.showUrl = function(url)
 	{
-		let regex = new RegExp('http(s)?:\/\/(.*)\.(.*)(\.(.*))?')
+		let regex = /http(s)?:\/\/[\w\.]+/g
 
 		if (url.match(new Validar(regex)))
 		{
@@ -22,13 +22,13 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 			  	console.log(matches)
 
 			  	matches.forEach(match => {
-			  		match.forEach(elem => {
-			  			$scope.urls.push({ nome: elem.toString() })
-			  		})
+					$scope.urls.push({ nome: match[0] })
 			  	})
+
+			 	$scope.$apply()
 			 });
 
-			 delete $scope.url
+			delete $scope.url
 		}
 		else
 		{
