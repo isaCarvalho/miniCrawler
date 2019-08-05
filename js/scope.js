@@ -1,35 +1,38 @@
 angular.module("miniCrawler", ["ngMessages"]);
-angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter)
+angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, $http)
 {
 	$scope.app = "Meu Mini Crawler"
 	$scope.urls = []
 	$scope.data = $filter('date')(new Date(), 'EEEE, dd/MM/yyyy')
 
+	$scope.buscar = function (url)
+	{
+		$http.get(`../control/?action=buscar&url=${url}`)
+			.then(function (response) {
+
+				let links = response.data
+
+				if (links != null)
+				{
+					setLinks = new Set();
+
+					links.forEach(link => {
+						setLinks.add(link);
+					})
+
+					setLinks.forEach(setLink => {
+						$scope.urls.push({ nome: setLink.url, ranking: setLink.ranking })
+					})
+				}
+			})
+	}
+
 	$scope.showUrl = function(url)
 	{
 		let regex = /http(s)?:\/\/[\w\.]+/g
 
-		let pagina = new URL(url)
-		console.log(pagina)
-
-		fetch(pagina.origin)
-		 .then(response => response.text())
-		 .then(html => {
-
-		  	let matches = html.matchAll(new ValidarTudo(regex))
-
-		  	let setMatches = new Set()
-
-		  	matches.forEach(match => {
-				setMatches.add(match[0])
-		  	})
-
-		  	setMatches.forEach(setMatch => {
-				$scope.urls.push({ nome: setMatch })
-		  	})
-
-		 	$scope.$apply()
-		 });
+		// dados vindos do banco
+		$scope.buscar(url)
 
 		$scope.urlForm.$setPristine();
 		delete $scope.url
