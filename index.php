@@ -49,7 +49,7 @@
 				<th>URL</th>
 				<th></th>
 			</tr>
-			<tr ng-repeat="url in urls | filter: url">
+			<tr ng-repeat="url in urls | filter: url | orderBy: 'nome':false">
 				<td>{{url.nome}}</td>
 				<td><input type="checkbox" ng-model="url.selecionada"></td>
 			</tr>
@@ -63,7 +63,7 @@
 
 <footer class="footer-copyright text-center py-3">
 	Copyright Isabela Carvalho
-	<p>{{data | date}}</p>
+	<p>{{ data }}</p>
 </footer>
 
 </html>

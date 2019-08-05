@@ -1,9 +1,9 @@
 angular.module("miniCrawler", ["ngMessages"]);
-angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
+angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter)
 {
 	$scope.app = "Meu Mini Crawler"
 	$scope.urls = []
-	$scope.data = new Date()
+	$scope.data = $filter('date')(new Date(), 'EEEE, dd/MM/yyyy')
 
 	$scope.showUrl = function(url)
 	{
