@@ -6,6 +6,8 @@
 
 <head>
 	<title>Meu Mini Crawler</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
 	<script src="lib/angular.js"></script>
@@ -19,6 +21,7 @@
 
 	<div class="jumbotron">
 		<h4>{{ app }}</h4>
+
 		<form id="formulario" name="urlForm">
 			<input class="form-control" type="text" name="urlInput" ng-model="url" placeholder="Digite a url a ser buscada..." ng-required="true" ng-minlength="11"ng-pattern="/^http(s)?:\/\/[\w\.]+$/">
 
@@ -40,13 +43,13 @@
 		</div>
 
 		<button class="btn btn-primary btn-block" ng-click="showUrl(url)" ng-disabled="!url">Buscar</button>
-	
-		<table class="table" ng-if="urls.length > 0">
+
+		<table class="table table-dark table-hover" ng-if="urls.length > 0">
 			<tr>
-				<th>url</th>
+				<th>URL</th>
 				<th></th>
 			</tr>
-			<tr ng-repeat="url in urls">
+			<tr ng-repeat="url in urls | filter: url">
 				<td>{{url.nome}}</td>
 				<td><input type="checkbox" ng-model="url.selecionada"></td>
 			</tr>
@@ -60,6 +63,7 @@
 
 <footer class="footer-copyright text-center py-3">
 	Copyright Isabela Carvalho
+	<p>{{data | date}}</p>
 </footer>
 
 </html>

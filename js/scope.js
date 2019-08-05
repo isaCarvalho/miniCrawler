@@ -3,6 +3,7 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope)
 {
 	$scope.app = "Meu Mini Crawler"
 	$scope.urls = []
+	$scope.data = new Date()
 
 	$scope.showUrl = function(url)
 	{
