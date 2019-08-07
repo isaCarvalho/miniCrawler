@@ -10,18 +10,12 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $fi
 		$http.get(`../control/?action=buscar&url=${url}`)
 			.then(function (response) {
 
-				let links = response.data
-
-				if (links != null)
+				if (response.data != null)
 				{
-					setLinks = new Set();
+					let links = response.data
 
 					links.forEach(link => {
-						setLinks.add(link);
-					})
-
-					setLinks.forEach(setLink => {
-						$scope.urls.push({ nome: setLink.url, ranking: setLink.ranking })
+						$scope.urls.push({ nome: link.url, ranking: link.ranking })
 					})
 				}
 			})

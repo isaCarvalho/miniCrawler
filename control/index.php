@@ -1,6 +1,6 @@
 <?php
 
-include "../php/URL.php";
+include "../model/URL.php";
 
 extract($_GET);
 
@@ -9,9 +9,6 @@ switch ($action) {
 		$link = new URL($url);
 
 		echo json_encode(URL::fetchAssocLinks());
-		break;
-	
-	case 'salvar':
 		break;
 
 	default:
