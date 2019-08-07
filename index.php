@@ -8,13 +8,14 @@
 	<title>Meu Mini Crawler</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/page.css">
-	<script src="lib/angular.js"></script>
-	<script src="lib/angular-messages.js"></script>
+	<script src="lib/js/angular.js"></script>
+	<script src="lib/js/angular-messages.js"></script>
 	<script src="js/Validar.js"></script>
 	<script src="js/ValidarTudo.js"></script>
-	<script src="js/scope.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers/miniCrawlerController.js"></script>
 </head>
 
 <body ng-controller="miniCrawlerCtrl">

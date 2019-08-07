@@ -1,4 +1,3 @@
-angular.module("miniCrawler", ["ngMessages"]);
 angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, $http)
 {
 	$scope.app = "Meu Mini Crawler"
