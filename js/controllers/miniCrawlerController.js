@@ -1,4 +1,4 @@
-angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, $http)
+angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, urlAPI)
 {
 	$scope.app = "Meu Mini Crawler"
 	$scope.urls = []
@@ -6,9 +6,11 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $fi
 
 	$scope.buscar = function (url)
 	{
-		$http.get(`../control/?action=buscar&url=${url}`)
+		
+			urlAPI.getURLS(url)
 			.then(function (response) {
 
+				// console.log(response.data)
 				if (response.data != null)
 				{
 					let links = response.data

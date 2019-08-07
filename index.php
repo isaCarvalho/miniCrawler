@@ -16,6 +16,8 @@
 	<script src="js/ValidarTudo.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers/miniCrawlerController.js"></script>
+	<script src="js/services/configConstant.js"></script>
+	<script src="js/services/urlsAPIFactory.js"></script>
 </head>
 
 <body ng-controller="miniCrawlerCtrl">
