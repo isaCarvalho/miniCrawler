@@ -1,4 +1,4 @@
-angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, urlAPI)
+angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $filter, urlAPI, $http)
 {
 	$scope.app = "Meu Mini Crawler"
 	$scope.urls = []
@@ -6,27 +6,46 @@ angular.module("miniCrawler").controller("miniCrawlerCtrl", function($scope, $fi
 
 	$scope.buscar = function (url)
 	{
-		
-			urlAPI.getURLS(url)
-			.then(function (response) {
+		let regex = /http(s)?:\/\/[\w\.]+/g
 
-				// console.log(response.data)
-				if (response.data != null)
-				{
-					let links = response.data
+		urlAPI.getURLS(url)
+		.then(function (response) {
 
-					links.forEach(link => {
-						$scope.urls.push({ nome: link.url, ranking: link.ranking })
-					})
-				}
-			})
+			if (response.data != 'null')
+			{
+				let links = response.data
+
+				links.forEach(link => {
+					$scope.urls.push({ nome: link.url, ranking: link.ranking })
+				})
+			}
+			else
+			{
+				fetch(url)
+				 .then(response => response.text())
+				 .then(html => {
+
+				  	let matches = html.matchAll(new ValidarTudo(regex))
+				 
+				  	let setMatches = new Set()
+
+				  	matches.forEach(match => {
+						setMatches.add(match[0])
+				  	})
+
+				  	setMatches.forEach(setMatch => {
+				  		$scope.urls.push({ nome: setMatch , ranking: 0 })
+				  	})
+
+				  	$scope.$apply()
+				})
+			}	
+		})
 	}
 
 	$scope.showUrl = function(url)
 	{
-		let regex = /http(s)?:\/\/[\w\.]+/g
-
-		// dados vindos do banco
+		// dados vindos do banco ou da pagina
 		$scope.buscar(url)
 
 		$scope.urlForm.$setPristine();

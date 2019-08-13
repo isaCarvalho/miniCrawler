@@ -16,7 +16,6 @@
 	<script src="js/ValidarTudo.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controllers/miniCrawlerController.js"></script>
-	<script src="js/services/configConstant.js"></script>
 	<script src="js/services/urlsAPIFactory.js"></script>
 </head>
 
@@ -26,7 +25,7 @@
 		<h4>{{ app }}</h4>
 
 		<form id="formulario" name="urlForm">
-			<input class="form-control" type="text" name="urlInput" ng-model="url" placeholder="Digite a url a ser buscada..." ng-required="true" ng-minlength="11"ng-pattern="/^http(s)?:\/\/[\w\.]+$/">
+			<input class="form-control" type="text" name="urlInput" ng-model="url" placeholder="Digite a url a ser buscada..." ng-required="true" ng-minlength="11" ng-pattern="/^http(s)?:\/\/[\w\.]+$/">
 
 			<hr/>
 		</form>
