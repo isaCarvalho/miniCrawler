@@ -52,7 +52,7 @@
 				<th></th>
 			</tr>
 			<tr ng-repeat="url in urls | filter: url | orderBy: 'nome':false">
-				<td>{{url.nome}}</td>
+				<td><a href="{{url.nome}}" target="_blank" style="color: white;">{{url.nome}}</a></td>
 				<td><input type="checkbox" ng-model="url.selecionada"></td>
 			</tr>
 		</table>
